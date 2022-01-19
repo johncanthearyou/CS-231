@@ -29,14 +29,14 @@ int length( char *str ) {
     return length;
 }
 
-//Function (in-place) to switch the case of all 
-//    constituent letters in a given string
+//Function (in-place) to switch the case of all letters
+//    in a given string, leaving non-letters alone
 //Inputs:  char array, the string to be case-inverted
-//Outputs: pointer to char array, processed string  and case-inverted 
+//Outputs: pointer to char array, processed string  and case-inverted
 char* switchCase( char *str ) {
     while( *str != '\0' ) {
         if( isUpper(*str) ) { 
-            //letter is uppercase, modify ASCII value to lowercase letter    
+            //letter is uppercase, modify ASCII value to lowercase letter
             *str += 32; 
         } else if( isLower(*str) ) { 
             //letter is lowercase, modify ASCII value to uppercase letter
@@ -44,14 +44,16 @@ char* switchCase( char *str ) {
         }
         str++;
     }
-    return str; //Still the head of the string
+    return str;
 }
 
 int main( int argc, char * argv[] ) {
-    //Variable Declarations
     FILE *inputFile, *outputFile;
-    int maxLineSize = 101;
+    //TODO: Should it be 100 +'\n' +'\0' (102)
+    //      Or should it be 100 +'\0' (101) only
+    int maxLineSize = 102; //
     char tmpLine[maxLineSize];
+
     //Init input and output files
     inputFile = fopen( argv[1], "r" ); //read only
     if( inputFile==NULL ) {
@@ -59,13 +61,12 @@ int main( int argc, char * argv[] ) {
         return -1; //Generic fail condition
     } else { outputFile = fopen( argv[2], "w"); } //write only
 
+    //Read input file, proccess strings, and write to output
     while( fgets(tmpLine, maxLineSize, inputFile)!=NULL ) {
-        //Check if the current line is too long
         if( length(tmpLine)==(maxLineSize-1) & tmpLine[maxLineSize-2]!='\n' ) {
-            if( fscanf(inputFile, "%*[^\n]")==0 ) {
-                printf( "%s\n", "Max length exceeded! The line will be truncated.");
-                
-            }
+            printf( "ERROR! Max length for a line exceeded! The line will be truncated.\n" );
+            tmpLine[maxLineSize-2] = '\0';
+            fscanf(inputFile, "%*[^\n]"); //Skip to next '\n' char, or EOF
         }
         
         switchCase(tmpLine);
