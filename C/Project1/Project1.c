@@ -90,7 +90,7 @@ int main( int argc, char *argv[] ) {
         if( newLineIdx==-1 ) {
             //Max line size reached, skip to next line in the file
             if( length(tmpLine)==maxChars ) {
-                printf( "Max line size reached! Output will be truncated.\n");
+                printf( "Max line size reached! Output may be truncated.\n");
             }
             fscanf(inputFile, "%*[^\n]"); //Skip up to '\n'
             fscanf(inputFile, "%*c");     //Skip '\n' itself          
