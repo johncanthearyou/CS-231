@@ -3,6 +3,12 @@
 //Dr. Vineyard
 //Winter 2022
 
+//Project1.c:
+//    takes the string of an input file, 
+//    changes the case of all letters in the input file 
+//    (up to a maximum of 100/line), 
+//    and prints it to an output file
+
 #include <stdio.h>
 
 //Function to check if a given character is an uppercase letter
