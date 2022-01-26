@@ -16,13 +16,15 @@ static char outputValue[40]; //Dangerous, global variable!
 //Inputs: int, the number to be checked
 //Outputs: void, no return value
 void fizzBuzz( int number ) {
-	strcpy( outputValue, "" );
+	strcpy( outputValue, "" ); //Start from clean slate
 
 	if( (number%3)==0 ) { strncat( outputValue, "Fizz", 5 ); }
 	if( (number%5)==0 ) { strncat( outputValue, "Buzz", 5 ); }
 	
 	if( strncmp( outputValue, "", 1 ) == 0 ) { 
-		sprintf( outputValue, "%d", number ); 
+		//outputValue is empty means there was no match for 'Fizz' or 'Buzz'
+		//  write the number itself to outputValue
+		sprintf( outputValue, "%d", number );
 	}
 }
 
