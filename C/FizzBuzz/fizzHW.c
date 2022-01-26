@@ -18,8 +18,8 @@ static char outputValue[40]; //Dangerous, global variable!
 void fizzBuzz( int number ) {
 	strcpy( outputValue, "" );
 
-	if( (number%3)==0 ) { strncat( outputValue, "Fizz", 4 ); }
-	if( (number%5)==0 ) { strncat( outputValue, "Buzz", 4 ); }
+	if( (number%3)==0 ) { strncat( outputValue, "Fizz", 5 ); }
+	if( (number%5)==0 ) { strncat( outputValue, "Buzz", 5 ); }
 	
 	if( strncmp( outputValue, "", 1 ) == 0 ) { 
 		sprintf( outputValue, "%d", number ); 
