@@ -8,19 +8,13 @@
 
 static char outputValue[40]; //Dangerous, global variable!
 
-//outputValue is here to show the use of static storage type.
-//The function fizzBuzz will place a string in outputValue each
-//time it is called.
-
-//Write the body of the function fizzBuzz.
-//This will place the string Fizz in outputValue for multiples
-//of 3, place the string Buzz in output value for multiples of 5,
-//and will place the string FizzBuzz in outputValue for multiples of
-//15.  Any other value stored in number will be copied as a string to
-// outputValue.
-
-//Use the function printf to change int number to a string
-//version of the number to be placed in outputValue.
+//In-place function fizzBuzz takes an int and writes to 
+//global variable outputValue:
+//    "Fizz" if the int is divisible by 3
+//    "Buzz" if the int is divisible by 5
+//    "FizzBuzz" if the int is divisble by both 3 and 5 (15)
+//Inputs: int, the number to be checked
+//Outputs: void, no return value
 void fizzBuzz( int number ) {
 	strcpy( outputValue, "" );
 
@@ -32,7 +26,12 @@ void fizzBuzz( int number ) {
 	}
 }
 
-
+//Function main implements and automated version of the 'FizzBuzz' game 
+//  (see function 'fizzBuzz')
+//  It asks the user how many numbers the program should evaluate from
+//    1 to the user-given number. 
+//  Then, prints to the console the appropriate response for a number 
+//    from 1 to the user-given number.
 int main() {
 	printf( "Automated Fizz Buzz\n" );
 	printf( "Print the numbers from 1 to the input number,\n" );
