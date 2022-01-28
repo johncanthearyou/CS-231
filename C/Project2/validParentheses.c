@@ -134,9 +134,9 @@ int main( int argc, char *argv[] ) {
 
         fprintf( outputFile, "%s ->", tmpLine );
         if( isValid(tmpLine) ) { 
-            fprintf( outputFile, "VALID PARENTHESIZATION", lineNum ); 
+            fprintf( outputFile, "VALID PARENTHESIZATION" ); 
         } else {
-            fprintf( outputFile, "INVALID PARENTHESIZATION", lineNum ); 
+            fprintf( outputFile, "INVALID PARENTHESIZATION" ); 
         }
     }
 
