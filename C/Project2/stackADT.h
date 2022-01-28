@@ -10,8 +10,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-//typedef char dataType;
-typedef double dataType;
+typedef char dataType;
+//typedef double dataType;
 
 //Defines the 'objects' (structs) that the stack will contain
 typedef struct node {

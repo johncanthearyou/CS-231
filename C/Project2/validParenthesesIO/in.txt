@@ -5,6 +5,6 @@
 ][]
 }{}
 (this {will [work]})
-(this will work                                                                 )
+(this will work                                                                )
 beep (boop) [that's {neat}]
 beep (boop) [that's {neat]}

@@ -102,7 +102,7 @@ nodeType* pop( stackType *stack ) {
 //This function deletes an entire stack data structure with no elements, 
 //  deallocating the memory. Each of the nodes are deallocated as well.
 //Inputs: pointer to pointer to stackType, the stack to delete
-//Outputs: pointer to stackType, the stack that was created
+//Outputs: NULL, the stack has been deleted
 stackType* destroy( stackType **stack ) {
     nodeType *currNode, *nextNode;
 

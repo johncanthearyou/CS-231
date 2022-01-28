@@ -44,25 +44,6 @@ int arePartners( char character, stackType *stack ) {
     return 0;
 }
 
-//Function to compute the index of a given char in a string
-//Inputs: pointer to char array, the string we will search
-//        char, the character for which we are trying to find the index
-//Outputs: int, the length of the string
-int findChar( char *str, char c ) {
-    int idx = 0;
-    while( *str != c ) {
-        if( *str == '\0' ) { return -1; } //char c was not found
-        idx++;
-        str++;
-    }
-    return idx;
-}
-
-//Function to compute the length of a given string by searching for '\0'
-//Inputs: pointer to char array, the for which we want to find length
-//Outputs: int, the length of the string
-int length( char *str ) { return findChar( str, '\0' ); }
-
 //This funtion takes a string and determines if it follows 
 //  proper parenthetical punctuation
 //Inputs: pointer to char array, the string to process and determine validity
@@ -100,6 +81,31 @@ int isValid(char *str) {
     return 1; //If we got this far, the string must be valid
 }
 
+//Function to compute the index of a given char in a string
+//Inputs: pointer to char array, the string we will search
+//        char, the character for which we are trying to find the index
+//Outputs: int, the length of the string
+int findChar( char *str, char c ) {
+    int idx = 0;
+    while( *str != c ) {
+        if( *str == '\0' ) { return -1; } //char c was not found
+        idx++;
+        str++;
+    }
+    return idx;
+}
+
+//Function to compute the length of a given string by searching for '\0'
+//Inputs: pointer to char array, the for which we want to find length
+//Outputs: int, the length of the string
+int length( char *str ) { return findChar( str, '\0' ); }
+
+//Function to compute the index of the first newline character in a string
+//Inputs: pointer to char array, the for which we want to find length
+//Outputs: int, the length of the string OR 
+//              -1 if it is not found
+int findNewLine( char *str ) { return findChar( str, '\n' ); }
+
 //This program takes an input file, changes the case of all
 //    letters in the input file, and prints it to an output file
 //Inputs: int, the number of arguments passed to the program
@@ -121,23 +127,22 @@ int main( int argc, char *argv[] ) {
     } else { outputFile = fopen( argv[2], "w"); } //write only
 
     //Read input file, proccess strings, and write to output
-    for( int lineNum=1; fgets(tmpLine, maxChars+2, inputFile)!=NULL; lineNum++ ) {
-        if( !(lineNum==1) ) { fprintf( outputFile, "\n" ); }
+    int isFirstLine = 1;
+    while( fgets(tmpLine, maxChars+2, inputFile)!=NULL ) {
+        if( !isFirstLine ) { fprintf( outputFile, "\n" ); }
+        else { isFirstLine--; } //First line, switch flag
 
-        if( length(tmpLine)==(maxChars+1) && tmpLine[maxChars]!='\n' ) {
-            fprintf( outputFile,
-                     "ERROR: Line #%d is too long. Exiting program.",
-                     lineNum
-                   );
+        //replace '\n' with '\0' to end string there
+        newLineIdx = findNewLine( tmpLine );
+        if( newLineIdx!=-1 ) tmpLine[newLineIdx] = '\0';
+        if( length(tmpLine)>maxChars ) {
+            fprintf( outputFile, "ERROR: Line is too long. Exiting program." );
             exit(BAD_EXIT);
         }
 
-        fprintf( outputFile, "%s ->", tmpLine );
-        if( isValid(tmpLine) ) { 
-            fprintf( outputFile, "VALID PARENTHESIZATION" ); 
-        } else {
-            fprintf( outputFile, "INVALID PARENTHESIZATION" ); 
-        }
+        fprintf( outputFile, "\"%s\" -> ", tmpLine );
+        if( !isValid(tmpLine) ) {  fprintf( outputFile, "IN" ); }
+        fprintf( outputFile, "VALID PARENTHESIZATION" ); 
     }
 
     fclose( inputFile );

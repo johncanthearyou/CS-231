@@ -1,3 +1,5 @@
+//atof
+
 //John Stockton
 //CS-231, Section 1
 //Dr. Vineyard
@@ -56,6 +58,11 @@ int findChar( char *str, char c ) {
     return idx;
 }
 
+//Function to compute the length of a given string by searching for '\0'
+//Inputs: pointer to char array, the for which we want to find length
+//Outputs: int, the length of the string
+int length( char *str ) { return findChar( str, '\0' ); }
+
 //Function to compute the index of the first newline character in a string
 //Inputs: pointer to char array, the for which we want to find length
 //Outputs: int, the length of the string OR 
@@ -73,6 +80,8 @@ int main( int argc, char *argv[] ) {
     FILE *inputFile, *outputFile;
     int maxChars = 80;
     char tmpLine[maxChars+2];
+    char *tmpLinePtr;
+    int newLineIdx;
 
     stackType *stack = create();
     dataType op1, op2, result;
@@ -86,17 +95,25 @@ int main( int argc, char *argv[] ) {
 
     //Read input file, proccess strings, and write to output
     int isFirstLine = 1;
-    while( fgets(tmpLine, maxChars+1, inputFile)!=NULL ) {
+    while( fgets(tmpLine, maxChars+2, inputFile)!=NULL ) {
         if( !isFirstLine ) { fprintf( outputFile, "\n" ); }
         else { isFirstLine--; } //First line, switch flag
 
         //replace '\n' with '\0' to end string there
-        tmpLine[findNewLine(tmpLine)] = '\0';
-        for( int i=0; tmpLine[i]!='\0'; i++ ) {
-            if( tmpLine[i]==' ' || tmpLine[i]=='\n' || tmpLine[i]=='\t' ) { 
+        newLineIdx = findNewLine( tmpLine );
+        if( newLineIdx!=-1 ) tmpLine[newLineIdx] = '\0';
+        if( length(tmpLine)>maxChars ) {
+            fprintf( outputFile, "ERROR: Line is too long. Exiting program." );
+            exit(BAD_EXIT);
+        }
+
+        tmpLinePtr = tmpLine;
+        while( *tmpLinePtr!='\0' ) {
+            if( *tmpLinePtr==' ' || *tmpLinePtr=='\n' || *tmpLinePtr=='\t' ) { 
                 //This is a whitespace, skip to next char
+                tmpLinePtr++;
                 continue; 
-            } else if( isOperator(tmpLine[i]) ) {
+            } else if( isOperator(*tmpLinePtr) ) {
                 if( isEmpty(stack) || (peek(stack) -> next)==NULL ) {
                     //There aren't enough operands!
                     fprintf( outputFile, 
@@ -106,15 +123,14 @@ int main( int argc, char *argv[] ) {
                     exit(BAD_EXIT);
                 }
                 //Found an operator, combine last two nodes on stack
-                op1 = pop( stack ) -> data; //extract data from popped node
                 op2 = pop( stack ) -> data; //extract data from popped node
-                result = combineOperands(op1, op2, tmpLine[i]);
+                op1 = pop( stack ) -> data; //extract data from popped node
+                result = combineOperands(op1, op2, *tmpLinePtr);
                 push( result, stack );
-            } else if( tmpLine[i]>='0' && tmpLine[i]<='9' ) {
+            } else if( *tmpLinePtr>='0' && *tmpLinePtr<='9' ) {
                 //This is a number, read it as a double and push to stack
-                //Subtracting the ASCII value for '\0' 
-                //  gives the correct number as a numeric type
-                push( tmpLine[i]-'0', stack );
+                result = strtod( tmpLinePtr, &tmpLinePtr );
+                push( result, stack );
             } else {
                 //Did not get a space, number, or operator, exit program
                 fprintf( outputFile, 
@@ -123,6 +139,8 @@ int main( int argc, char *argv[] ) {
                        );
                 exit(BAD_EXIT);
             }
+
+            tmpLinePtr++;
         }
 
         result = pop( stack ) -> data; //The overall result for the line
