@@ -1,0 +1,8 @@
+Line #1 has valid parenthesization
+Line #2 has valid parenthesization
+Line #3 has valid parenthesization
+Line #4 DOESN'T have valid parenthesization
+Line #5 DOESN'T have valid parenthesization
+Line #6 DOESN'T have valid parenthesization
+Line #7 has valid parenthesization
+ERROR: Line #8 is too long. Exiting program.
