@@ -127,17 +127,10 @@ int main( int argc, char *argv[] ) {
                 op1 = pop( stack ) -> data; //extract data from popped node
                 result = combineOperands(op1, op2, *tmpLinePtr);
                 push( result, stack );
-            } else if( *tmpLinePtr>='0' && *tmpLinePtr<='9' ) {
+            } else {
                 //This is a number, read it as a double and push to stack
                 result = strtod( tmpLinePtr, &tmpLinePtr );
                 push( result, stack );
-            } else {
-                //Did not get a space, number, or operator, exit program
-                fprintf( outputFile, 
-                         "ERROR! \"%s\" has invalid characters. Exiting.\n",
-                         argv[1]
-                       );
-                exit(BAD_EXIT);
             }
 
             tmpLinePtr++;
