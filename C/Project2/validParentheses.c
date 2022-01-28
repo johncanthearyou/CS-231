@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include "stack.c"
+#include "stackADT.h"
 
 #define BAD_EXIT -1
 
