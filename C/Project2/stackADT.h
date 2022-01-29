@@ -7,8 +7,8 @@
 //    Main program using stack will not see implementation
 //    Type of item in stack is determinded via include statement
 
-typedef char dataType;
-//typedef double dataType;
+//typedef char dataType;
+typedef double dataType;
 
 //Defines the 'objects' (structs) that the stack will contain
 typedef struct node {

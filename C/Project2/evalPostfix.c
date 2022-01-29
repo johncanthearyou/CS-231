@@ -137,7 +137,7 @@ int main( int argc, char *argv[] ) {
             } else {
                 //Did not get a space, number, or operator, exit program
                 fprintf( outputFile, 
-                         "ERROR! \"%s\" has invalid characters. Exiting.\n",
+                         "ERROR! \"%s\" has invalid characters. Exiting.",
                          argv[1]
                        );
                 exit(BAD_EXIT);
