@@ -1,5 +1,3 @@
-//atof
-
 //John Stockton
 //CS-231, Section 1
 //Dr. Vineyard
