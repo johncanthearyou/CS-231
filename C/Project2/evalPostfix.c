@@ -147,7 +147,7 @@ int main( int argc, char *argv[] ) {
         }
 
         result = pop( stack ) -> data; //The overall result for the line
-        fprintf( outputFile, "%s = %f", tmpLine, result );
+        fprintf( outputFile, "%s = %f", tmpLine, (double) result );
     }
 
     fclose( inputFile );

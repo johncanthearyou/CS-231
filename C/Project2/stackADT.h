@@ -7,9 +7,6 @@
 //    Main program using stack will not see implementation
 //    Type of item in stack is determinded via include statement
 
-#include <stdio.h>
-#include <stdlib.h>
-
 typedef char dataType;
 //typedef double dataType;
 

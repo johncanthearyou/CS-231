@@ -3,9 +3,11 @@
 //Dr. Vineyard
 //Winter 2022
 
-#include <stdio.h>
-#include <string.h>
 #include "stackADT.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 #define BAD_EXIT -1
 
