@@ -14,6 +14,6 @@ To run validParentheses.c:
 
 To run evalPostfix:
     1. In stackADT.h: ensure line #13 is COMMENTED OUT and line #14 is UNCOMMENTED
-    2. run `gcc -c stackADT.h stack.c gcc evalPostfix.c`
+    2. run `gcc -c stackADT.h stack.c evalPostfix.c`
     3. run `./a.out <exampleInputFile.txt> <exampleInputfile.txt>`
     4. profit

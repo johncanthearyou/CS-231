@@ -7,10 +7,14 @@
 //This imported file is where the data type for the stack nodes is defined
 #include "stackADT.h"
 
+#include <stdio.h>
+#include <stdlib.h>
+
 //This function creates a new stack data structure with no elements, 
 //  allocating the memory requred. Both the 'top' and 'bottom' elements
-//  are set to null by default. The data type that the nodes contain are
-//  defined on lines 13 or 14 of stackADT.h in the directory
+//  are set to null by default. 
+//NOTE: The data type that the nodes contain are defined on lines 13 or
+//  14 of stackADT.h in the directory
 //Inputs: None
 //Outputs: pointer to stackType, the stack that was created
 stackType* create() {

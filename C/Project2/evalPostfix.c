@@ -40,7 +40,9 @@ dataType combineOperands( dataType op1, dataType op2, char operator ) {
         case '-': return op1-op2;
         case '*': return op1*op2;
         case '/': return op1/op2;
-        default: exit(BAD_EXIT);
+        default: 
+            fprintf(stderr, "Invalid operator passed to 'combineOperands'" );
+            exit(BAD_EXIT);
     }
 }
 
@@ -127,10 +129,18 @@ int main( int argc, char *argv[] ) {
                 op1 = pop( stack ) -> data; //extract data from popped node
                 result = combineOperands(op1, op2, *tmpLinePtr);
                 push( result, stack );
-            } else {
+            } else if( (*tmpLinePtr>='0' && *tmpLinePtr<='9') 
+                            || *tmpLinePtr=='.' ) {
                 //This is a number, read it as a double and push to stack
                 result = strtod( tmpLinePtr, &tmpLinePtr );
                 push( result, stack );
+            } else {
+                //Did not get a space, number, or operator, exit program
+                fprintf( outputFile, 
+                         "ERROR! \"%s\" has invalid characters. Exiting.\n",
+                         argv[1]
+                       );
+                exit(BAD_EXIT);
             }
 
             tmpLinePtr++;
