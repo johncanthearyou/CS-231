@@ -82,7 +82,7 @@ nodeType* peek( stackType *stack ) {
 //This function gets the top node of the stack, 
 //  deleting the node from the stack and deallocating the memory of the node
 //Inputs: pointer to stackType, the stack from which top node will be popped
-//Outputs: pointer to nodeType, the (former) top node of the stack
+//Outputs: NULL, the node has been deleted
 nodeType* pop( stackType *stack ) {
     if( stack==NULL ) { 
         fprintf(stderr, "ERROR! cannot pop from null stack.\n");
@@ -92,16 +92,15 @@ nodeType* pop( stackType *stack ) {
         return NULL;
     }
 
-    nodeType **poppedNode = &(stack -> top);
+    nodeType *poppedNode = stack -> top;
     stack -> top = (stack -> top) -> next; //update the top node to the next node
     if( (stack -> top)==NULL ) { 
         //We are popping the only node, set the 'bottom' node to NULL
         stack -> bottom = NULL; 
     }
 
-    free( *poppedNode ); //deallocate the memory for the popped node
-    *poppedNode = NULL;
-    return *poppedNode;
+    free( poppedNode ); //deallocate the memory for the popped node
+    return NULL;
 }
 
 //This function deletes an entire stack data structure with no elements, 
@@ -125,6 +124,5 @@ stackType* destroy( stackType **stack ) {
 
     //Deallocate memory for the whole stack
     free( *stack );
-    *stack = NULL;
-    return *stack; 
+    return NULL; 
 }

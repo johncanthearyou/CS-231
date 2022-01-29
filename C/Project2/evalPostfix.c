@@ -146,7 +146,8 @@ int main( int argc, char *argv[] ) {
             tmpLinePtr++;
         }
 
-        result = pop( stack ) -> data; //The overall result for the line
+        result = peek( stack ) -> data; //The overall result for the line
+        pop( stack );
         fprintf( outputFile, "%s = %f", tmpLine, (double) result );
     }
 
