@@ -129,18 +129,11 @@ int main( int argc, char *argv[] ) {
                 pop( stack );
                 result = combineOperands(op1, op2, *tmpLinePtr);
                 push( result, stack );
-            } else if( (*tmpLinePtr>='0' && *tmpLinePtr<='9') 
-                            || *tmpLinePtr=='.' ) {
-                //This is a number, read it as a double and push to stack
+            } else {
+                //This is assumed to be a number
+                //  read it as a double and push to stack
                 result = strtod( tmpLinePtr, &tmpLinePtr );
                 push( result, stack );
-            } else {
-                //Did not get a space, number, or operator, exit program
-                fprintf( outputFile, 
-                         "ERROR! \"%s\" has invalid characters. Exiting.",
-                         argv[1]
-                       );
-                exit(BAD_EXIT);
             }
 
             tmpLinePtr++;
