@@ -123,8 +123,10 @@ int main( int argc, char *argv[] ) {
                     exit(BAD_EXIT);
                 }
                 //Found an operator, combine last two nodes on stack
-                op2 = pop( stack ) -> data; //extract data from popped node
-                op1 = pop( stack ) -> data; //extract data from popped node
+                op2 = peek( stack ) -> data; //extract data from popped node
+                pop( stack );
+                op1 = peek( stack ) -> data; //extract data from popped node
+                pop( stack );
                 result = combineOperands(op1, op2, *tmpLinePtr);
                 push( result, stack );
             } else if( (*tmpLinePtr>='0' && *tmpLinePtr<='9') 

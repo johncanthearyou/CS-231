@@ -92,15 +92,16 @@ nodeType* pop( stackType *stack ) {
         return NULL;
     }
 
-    nodeType *poppedNode = stack -> top;
+    nodeType **poppedNode = &(stack -> top);
     stack -> top = (stack -> top) -> next; //update the top node to the next node
     if( (stack -> top)==NULL ) { 
         //We are popping the only node, set the 'bottom' node to NULL
         stack -> bottom = NULL; 
     }
 
-    free( (void *) poppedNode); //deallocate the memory for the popped node
-    return poppedNode;
+    free( *poppedNode ); //deallocate the memory for the popped node
+    *poppedNode = NULL;
+    return *poppedNode;
 }
 
 //This function deletes an entire stack data structure with no elements, 
@@ -115,15 +116,15 @@ stackType* destroy( stackType **stack ) {
         currNode = (*stack) -> top;
         nextNode = currNode -> next;
         while( nextNode!=NULL ) {
-            free( (void *) currNode );
+            free( currNode );
             currNode = nextNode;
             nextNode = nextNode -> next;
         }
-        free( (void *) currNode );
+        free( currNode );
     }
 
     //Deallocate memory for the whole stack
-    free( (void *) *stack );
+    free( *stack );
     *stack = NULL;
     return *stack; 
 }
