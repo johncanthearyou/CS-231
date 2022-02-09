@@ -33,20 +33,20 @@ int main( int argc, char *argv[] ) {
         execlp( "./wordGrab", "./wordGrab", inputName, NULL );
     }
 
-    int pid2 = fork();
-    if( pid2<0 ) { return 2; }
-    else if( pid2==0 ) {
-        //Child process 2 (./lengthCheck)
-        dup2( fd[0], STDIN_FILENO );
-        close( fd[0] );
-        close( fd[1] );
-        execlp( "./lengthCheck", "./lengthCheck", wordLength, NULL );
-    }
+    // int pid2 = fork();
+    // if( pid2<0 ) { return 2; }
+    // else if( pid2==0 ) {
+    //     //Child process 2 (./lengthCheck)
+    //     dup2( fd[0], STDIN_FILENO );
+    //     close( fd[0] );
+    //     close( fd[1] );
+    //     execlp( "./lengthCheck", "./lengthCheck", wordLength, NULL );
+    // }
 
     close( fd[0] );
     close( fd[1] );
 
     waitpid( pid1, NULL, 0 );
-    waitpid( pid2, NULL, 0 );
+    //waitpid( pid2, NULL, 0 );
     return 0;
 }
