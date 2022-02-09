@@ -7,6 +7,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 int fail( char str[] ) {
     fprintf( stderr, "%s Failed", str );
