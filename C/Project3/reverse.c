@@ -9,11 +9,13 @@
 
 #define MAX_LINE_SIZE 20
 
+//TODO: Document...
 void clearLine(FILE *file) {
     char c = getc(file);
     while (c != '\n') { c = getc(file); }
 }
 
+//TODO: Document...
 void addToArray(int index, char **arrayPtr, char *line) {
     int len = strlen( line );
     if ( len==(MAX_LINE_SIZE-1) && line[MAX_LINE_SIZE-1]!='\n' ) {
