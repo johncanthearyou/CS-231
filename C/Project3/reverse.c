@@ -28,9 +28,7 @@ void addToArray(int index, char **arrayPtr, char *line) {
     } else {
         char *linePtr = strchr( line, '\n' );
         if ( linePtr!=NULL ) {  *linePtr = '\0'; }
-        printf("im gonna pre!!!\t");
         *( arrayPtr+index ) = malloc( len+1 );
-        printf("oh yeaaaahhh!!!\n");
         strncpy( *(arrayPtr+index), line, len+1 );
     }
 }
