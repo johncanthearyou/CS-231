@@ -29,7 +29,7 @@ void addToArray(int index, char **arrayPtr, char *line) {
         if ( linePtr!=NULL ) {  *linePtr = '\0'; } //if no newline, empty string
     }
     *( arrayPtr+index ) = malloc( len+1 ); //allocate memory for string
-    strncpy( *(arrayPtr+index), line, MAX_CHARS );
+    strncpy( *(arrayPtr+index), line, len );
 }
 
 //Main will look for words from stdin, each separated by a new line
