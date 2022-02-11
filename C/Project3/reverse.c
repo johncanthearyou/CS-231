@@ -47,7 +47,7 @@ int main() {
     //Allocate enough size for 10 char pointers
     char **strArrayPtr = malloc( currSize*sizeof(char *) ); 
 
-    // char *tmpLine;
+    char *tmpLine;
     // tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
     // while ( tmpLine!=NULL ) {
     //     if ( strIdx==currSize ) {
