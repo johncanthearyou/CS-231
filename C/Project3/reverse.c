@@ -40,7 +40,6 @@ void addToArray(int index, char **arrayPtr, char *line) {
 //Inputs: None
 //Outputs: None
 int main() {
-    printf("starting reverse");
     int strIdx = 0;
     int currSize = 10; //This is the initial size of the string array
 
@@ -48,23 +47,23 @@ int main() {
     //Allocate enough size for 10 char pointers
     char **strArrayPtr = malloc( currSize*sizeof(char *) ); 
 
-    char *tmpLine;
-    tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
-    while ( tmpLine!=NULL ) {
-        if ( strIdx==currSize ) {
-            //We've reached the max size for the string array
-            //    Reallocate an array with 10 more elements, then insert
-            currSize += 10;
-            strArrayPtr = realloc( strArrayPtr, currSize*sizeof(char *) );
-        }
-        addToArray( strIdx, strArrayPtr, inputLine );
+    // char *tmpLine;
+    // tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
+    // while ( tmpLine!=NULL ) {
+    //     if ( strIdx==currSize ) {
+    //         //We've reached the max size for the string array
+    //         //    Reallocate an array with 10 more elements, then insert
+    //         currSize += 10;
+    //         strArrayPtr = realloc( strArrayPtr, currSize*sizeof(char *) );
+    //     }
+    //     addToArray( strIdx, strArrayPtr, inputLine );
 
-        strIdx++;
-        tmpLine = fgets( inputLine, MAX_CHARS+2, stdin );
-    }
+    //     strIdx++;
+    //     tmpLine = fgets( inputLine, MAX_CHARS+2, stdin );
+    // }
 
-    //Print the contents of the array of strings in reverse order
-    for( int i=(strIdx-1); i>=0; i-- ) {
-        printf( "%s\n", *(strArrayPtr+i) );
-    }
+    // //Print the contents of the array of strings in reverse order
+    // for( int i=(strIdx-1); i>=0; i-- ) {
+    //     printf( "%s\n", *(strArrayPtr+i) );
+    // }
 }
