@@ -27,7 +27,7 @@ void addToArray(int index, char **arrayPtr, char *line) {
         fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
         fscanf( stdin, "%*c"); //Skip '\n' itself       
     } else {
-        rintf("boutta malloc for short line");
+        printf("boutta malloc for short line");
         char *linePtr = strchr(line, '\n');
         if ( linePtr!=NULL ) {  *linePtr = '\0'; }
         *( arrayPtr+index ) = malloc( len+1 );
