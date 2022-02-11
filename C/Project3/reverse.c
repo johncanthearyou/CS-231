@@ -9,15 +9,6 @@
 
 #define MAX_CHARS 80
 
-//This function takes a file stream and updates it to point
-//    at the next new line in the file
-//Inputs: pointer to File, the file for which we want to skip to a new line
-//Outputs: none
-void clearLine(FILE *file) {
-    char c = getc(file);
-    while (c != '\n') { c = getc(file); }
-}
-
 //This function adds a string to a string array, dynamically reallocating the 
 //    size of the array once it fills up 
 //Inputs: int, the index at which we want to insert the string 
@@ -27,17 +18,18 @@ void clearLine(FILE *file) {
 //Outputs: None
 void addToArray(int index, char **arrayPtr, char *line) {
     int len = strlen( line );
-    if ( len==(MAX_CHARS-1) && line[MAX_CHARS-1]!='\n' ) {
+    if ( len==(MAX_CHARS+1) && line[MAX_CHARS]!='\n' ) {
         *( arrayPtr+index ) = malloc( MAX_CHARS );
-        line[MAX_CHARS-1] = '\0';
+        line[MAX_CHARS] = '\0';
         fprintf( stderr, "%s\n", line );
         strncpy( *(arrayPtr+index), line, MAX_CHARS );
-        clearLine( stdin ); // remove remainder of input line
+        fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
+        fscanf( stdin, "%*c"); //Skip '\n' itself       
     } else {
         char *linePtr = strchr(line, '\n');
         if ( linePtr!=NULL ) {  *linePtr = '\0'; }
         *( arrayPtr+index ) = malloc( strlen(line)+1 );
-        strncpy( *(arrayPtr+index), line, MAX_CHARS-1 );
+        strncpy( *(arrayPtr+index), line, MAX_CHARS+2 );
     }
 }
 
@@ -51,12 +43,12 @@ int main() {
     int strIdx = 0;
     int currSize = 10; //This is the initial size of the string array
 
-    char inputLine[MAX_CHARS+1];
+    char inputLine[MAX_CHARS+2];
     //Allocate enough size for 10 char pointers
     char **strArrayPtr = malloc( currSize*sizeof(char *) ); 
 
     char *tmpLine;
-    tmpLine = fgets(inputLine, MAX_CHARS, stdin);
+    tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
     while ( tmpLine!=NULL ) {
         if ( strIdx==currSize ) {
             //We've reached the max size for the string array
@@ -67,11 +59,11 @@ int main() {
         addToArray( strIdx, strArrayPtr, inputLine );
 
         strIdx++;
-        tmpLine = fgets( inputLine, MAX_CHARS, stdin );
+        tmpLine = fgets( inputLine, MAX_CHARS+2, stdin );
     }
 
     //Print the contents of the array of strings in reverse order
     for( int i=(strIdx-1); i>=0; i-- ) {
-        fprintf( stdout, "%s\n", *(strArrayPtr+i) );
+        printf( "%s\n", *(strArrayPtr+i) );
     }
 }
