@@ -50,12 +50,12 @@ int main() {
     char *tmpLine;
     tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
     while ( tmpLine!=NULL ) {
-    //     if ( strIdx==currSize ) {
+        if ( strIdx==currSize ) {
     //         //We've reached the max size for the string array
     //         //    Reallocate an array with 10 more elements, then insert
     //         currSize += 10;
     //         strArrayPtr = realloc( strArrayPtr, currSize*sizeof(char *) );
-    //     }
+        }
     //     addToArray( strIdx, strArrayPtr, inputLine );
 
         strIdx++;
