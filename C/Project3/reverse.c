@@ -26,11 +26,12 @@ void addToArray(int index, char **arrayPtr, char *line) {
         fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
         fscanf( stdin, "%*c"); //Skip '\n' itself       
     } else {
-        printf("nah you chill\n");
         char *linePtr = strchr( line, '\n' );
         if ( linePtr!=NULL ) {  *linePtr = '\0'; }
+        printf("im gonna pre!!!\t");
         *( arrayPtr+index ) = malloc( len+1 );
-        strncpy( *(arrayPtr+index), line, MAX_CHARS+2 );
+        printf("oh yeaaaahhh!!!\n");
+        strncpy( *(arrayPtr+index), line, len+1 );
     }
 }
 
