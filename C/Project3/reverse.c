@@ -48,7 +48,7 @@ int main() {
     char **strArrayPtr = malloc( currSize*sizeof(char *) ); 
 
     char *tmpLine;
-    // tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
+    tmpLine = fgets(inputLine, MAX_CHARS+2, stdin);
     // while ( tmpLine!=NULL ) {
     //     if ( strIdx==currSize ) {
     //         //We've reached the max size for the string array
