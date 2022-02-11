@@ -19,7 +19,7 @@
 void addToArray(int index, char **arrayPtr, char *line) {
     int len = strlen( line );
     if ( len==(MAX_CHARS+1) && line[MAX_CHARS]!='\n' ) {
-        printf("boutta malloc for long line")
+        printf("boutta malloc for long line");
         *( arrayPtr+index ) = malloc( MAX_CHARS );
         line[MAX_CHARS] = '\0';
         fprintf( stderr, "%s\n", line );
