@@ -29,7 +29,7 @@ void addToArray(int index, char **arrayPtr, char *line) {
         char *linePtr = strchr( line, '\n' );
         if ( linePtr!=NULL ) {  *linePtr = '\0'; }
         *( arrayPtr+index ) = malloc( len+1 );
-        strncpy( *(arrayPtr+index), line, MAX_CHARS+2 );
+        strncpy( *(arrayPtr+index), line, len+1 );
     }
 }
 
