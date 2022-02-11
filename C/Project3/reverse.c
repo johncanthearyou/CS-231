@@ -19,18 +19,17 @@
 void addToArray(int index, char **arrayPtr, char *line) {
     int len = strlen( line );
     if ( len==(MAX_CHARS+1) && line[MAX_CHARS]!='\n' ) {
-        *( arrayPtr+index ) = malloc( MAX_CHARS );
-        line[MAX_CHARS] = '\0';
-        fprintf( stderr, "%s\n", line );
-        strncpy( *(arrayPtr+index), line, MAX_CHARS );
+        *( arrayPtr+index ) = malloc( MAX_CHARS ); //allocate memory for string
+        line[MAX_CHARS] = '\0'; //cut off line after MAX_LINE chars
+        len = MAX_CHARS;
         fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
         fscanf( stdin, "%*c"); //Skip '\n' itself       
     } else {
-        char *linePtr = strchr( line, '\n' );
-        if ( linePtr!=NULL ) {  *linePtr = '\0'; }
-        *( arrayPtr+index ) = malloc( len+1 );
-        strncpy( *(arrayPtr+index), line, len+1 );
+        char *linePtr = strchr( line, '\n' ); //find the newline
+        if ( linePtr!=NULL ) {  *linePtr = '\0'; } //if no newline, empty string
     }
+    *( arrayPtr+index ) = malloc( len+1 ); //allocate memory for string
+    strncpy( *(arrayPtr+index), line, MAX_CHARS );
 }
 
 //Main will look for words from stdin, each separated by a new line
