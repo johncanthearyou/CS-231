@@ -19,6 +19,7 @@
 void addToArray(int index, char **arrayPtr, char *line) {
     int len = strlen( line );
     if ( len==(MAX_CHARS+1) && line[MAX_CHARS]!='\n' ) {
+        printf("boutta malloc for long line")
         *( arrayPtr+index ) = malloc( MAX_CHARS );
         line[MAX_CHARS] = '\0';
         fprintf( stderr, "%s\n", line );
@@ -26,9 +27,10 @@ void addToArray(int index, char **arrayPtr, char *line) {
         fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
         fscanf( stdin, "%*c"); //Skip '\n' itself       
     } else {
+        rintf("boutta malloc for short line");
         char *linePtr = strchr(line, '\n');
         if ( linePtr!=NULL ) {  *linePtr = '\0'; }
-        *( arrayPtr+index ) = malloc( strlen(line)+1 );
+        *( arrayPtr+index ) = malloc( len+1 );
         strncpy( *(arrayPtr+index), line, MAX_CHARS+2 );
     }
 }
@@ -45,6 +47,7 @@ int main() {
 
     char inputLine[MAX_CHARS+2];
     //Allocate enough size for 10 char pointers
+    printf("boutta malloc for bigger array");
     char **strArrayPtr = malloc( currSize*sizeof(char *) ); 
 
     char *tmpLine;
