@@ -19,17 +19,19 @@
 void addToArray(int index, char **arrayPtr, char *line) {
     int len = strlen( line );
     if ( len==(MAX_CHARS+1) && line[MAX_CHARS]!='\n' ) {
-        *( arrayPtr+index ) = malloc( MAX_CHARS );
-        line[MAX_CHARS] = '\0';
-        fprintf( stderr, "%s\n", line );
-        strncpy( *(arrayPtr+index), line, MAX_CHARS );
-        fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
-        fscanf( stdin, "%*c"); //Skip '\n' itself       
+        printf("ayo long line\n");
+        // *( arrayPtr+index ) = malloc( MAX_CHARS );
+        // line[MAX_CHARS] = '\0';
+        // fprintf( stderr, "%s\n", line );
+        // strncpy( *(arrayPtr+index), line, MAX_CHARS );
+        // fscanf( stdin, "%*[^\n]" ); //Skip up to '\n'
+        // fscanf( stdin, "%*c"); //Skip '\n' itself       
     } else {
-        char *linePtr = strchr(line, '\n');
-        if ( linePtr!=NULL ) {  *linePtr = '\0'; }
-        *( arrayPtr+index ) = malloc( len+1 );
-        strncpy( *(arrayPtr+index), line, MAX_CHARS+2 );
+        printf("nah you chill\n");
+        // char *linePtr = strchr(line, '\n');
+        // if ( linePtr!=NULL ) {  *linePtr = '\0'; }
+        // *( arrayPtr+index ) = malloc( len+1 );
+        // strncpy( *(arrayPtr+index), line, MAX_CHARS+2 );
     }
 }
 
