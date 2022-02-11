@@ -64,8 +64,8 @@ int main() {
         tmpLine = fgets( inputLine, MAX_CHARS+2, stdin );
     }
 
-    //Print the contents of the array of strings in reverse order
-    for( int i=(strIdx-1); i>=0; i-- ) {
-        printf( "%s\n", *(strArrayPtr+i) );
-    }
+    // //Print the contents of the array of strings in reverse order
+    // for( int i=(strIdx-1); i>=0; i-- ) {
+    //     printf( "%s\n", *(strArrayPtr+i) );
+    // }
 }
